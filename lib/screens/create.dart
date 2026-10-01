@@ -17,10 +17,7 @@ class _CreateScreenState extends State<CreateScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Create Student'),
-        centerTitle: true,
-      ),
+      appBar: AppBar(title: const Text('Create Student'), centerTitle: true),
       body: _bodyWidget(),
     );
   }
@@ -73,16 +70,29 @@ class _CreateScreenState extends State<CreateScreen> {
               ElevatedButton(
                 onPressed: () async {
                   // TODO 5: Create a Map<String, dynamic> containing the text from your controllers
-                  
-                  // TODO 6: Call Database().addStudent() passing your map and the ID string
-                  
-                  // TODO 7: If successful, clear all three controllers
-                  
-                  // TODO 8: Show a success message using Fluttertoast.showToast()
-                  
+                  Map<String, dynamic> data = {
+                    'name': nameController.text,
+                    'id': idController.text,
+                    'degree': degreeController.text,
+                  };
+
+                  try {
+                    // TODO 6: Call Database().addStudent() passing your map and the ID string
+                    await Database().addStudent(data, idController.text);
+
+                    // TODO 7: If successful, clear all three controllers
+                    nameController.clear();
+                    idController.clear();
+                    degreeController.clear();
+
+                    // TODO 8: Show a success message using Fluttertoast.showToast()
+                    Fluttertoast.showToast(msg: 'Student added successfully');
+                  } catch (e) {
+                    Fluttertoast.showToast(msg: 'Failed to add student: $e');
+                  }
                 },
                 child: const Text("Submit"),
-              )
+              ),
             ],
           ),
         ),

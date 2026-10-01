@@ -1,6 +1,6 @@
 import 'package:crud_app/screens/create.dart';
 import 'package:crud_app/screens/delete.dart'; // Ensure this file exists
-import 'package:crud_app/screens/read.dart';   // Ensure this file exists
+import 'package:crud_app/screens/read.dart'; // Ensure this file exists
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -8,11 +8,8 @@ Future<void> main() async {
   // Ensure Flutter engine is initialized before Firebase
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  
-  runApp(const MaterialApp(
-    home: Home(),
-    debugShowCheckedModeBanner: false,
-  ));
+
+  runApp(const MaterialApp(home: Home(), debugShowCheckedModeBanner: false));
 }
 
 class Home extends StatefulWidget {
@@ -27,9 +24,9 @@ class _HomeState extends State<Home> {
 
   // List of screens for the BottomNavigationBar
   List<Widget> screens = [
-    const CreateScreen(), 
-    const ReadScreen(), 
-    const DeleteScreen()
+    const CreateScreen(),
+    const ReadScreen(),
+    const DeleteScreen(),
   ];
 
   @override
